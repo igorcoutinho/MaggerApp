@@ -3,7 +3,7 @@ import {Animated, Dimensions} from 'react-native';
 import {Small, Original} from './styles';
 const OriginalAnimated = Animated.createAnimatedComponent(Original);
 
-export default function LazyImage({
+function LazyImage({
   smallSource,
   source,
   aspectRatio,
@@ -50,3 +50,5 @@ export default function LazyImage({
     </Small>
   );
 }
+
+export default LazyImage;

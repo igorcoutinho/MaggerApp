@@ -10,7 +10,7 @@ function Home() {
       <Card
         primaryText={'PRIMEIRA DESPESA'}
         secondaryText={'Valor da despesa'}
-        // dadosText={'500'}
+        dadosText={'500'}
         rightIcon={'Calendario'}
         rightIconCorPrimaria={colors.orange_west_side}
       />

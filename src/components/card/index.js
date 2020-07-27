@@ -13,7 +13,6 @@ import Icon from '../atomic/icon';
 export default class Card extends Component {
   static defaultProps = {
     lines: 1,
-    primaryColor: colors.gray_regent,
   };
 
   renderCard = () => {
@@ -23,8 +22,6 @@ export default class Card extends Component {
       rightIcon,
       lines,
       onPress,
-      primaryColor,
-      onLeftIconClicked,
       onRightIconClicked,
       onContainerClicked,
       secondaryTextMoreLine,
@@ -32,7 +29,6 @@ export default class Card extends Component {
       leftIconCorSecundaria,
       rightIconCorPrimaria,
       rightIconCorSecundaria,
-      captionText,
       dadosText,
       dadosTextColor,
       useCaptalize,
@@ -40,9 +36,13 @@ export default class Card extends Component {
     console.log(primaryText);
     return (
       <Fragment>
-        <View
-          style={({flex: 1, flexDirection: 'column'}, styles.cardContainer)}>
-          <View style={{flex: 1, justifyContent: 'center', minHeight: 40}}>
+        <View style={styles.cardContainer}>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              minHeight: 40,
+            }}>
             {primaryText && (
               <Text
                 textColor={colors.blue_daintree}
@@ -60,24 +60,18 @@ export default class Card extends Component {
             ) : null}
           </View>
 
-          <View style={{flexDirection: 'column'}}>
-            {lines > 2 && !!rightIcon && !!captionText && (
-              <View style={styles.captionTextContainer2}>
-                <Text>{captionText}</Text>
-              </View>
-            )}
-
-            {dadosText ? (
-              <Desc2
-                textColor={dadosTextColor}
-                numberOfLines={1}
-                style={{maxWidth: 100}}>
-                {dadosText}
-              </Desc2>
-            ) : rightIcon ? (
+          <View
+            style={{
+              flexDirection: 'row',
+              paddingHorizontal: 16,
+              paddingVertical: 8,
+              alignItems: 'flex-start',
+              backgroundColor: 'red',
+            }}>
+            {rightIcon ? (
               <TouchableOpacity
                 onPress={onRightIconClicked}
-                style={[styles.rightIcon]}>
+                style={{marginHorizontal: 10}}>
                 <Icon
                   name={rightIcon}
                   corPrimaria={rightIconCorPrimaria}
@@ -87,6 +81,13 @@ export default class Card extends Component {
                 />
               </TouchableOpacity>
             ) : null}
+
+            <Desc2
+              textColor={dadosTextColor}
+              numberOfLines={1}
+              style={{maxWidth: 100, alignSelf: 'center'}}>
+              {dadosText}
+            </Desc2>
           </View>
         </View>
       </Fragment>
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
-    elevation: 0,
+    elevation: 1,
     backgroundColor: colors.white_solid,
     opacity: 1,
     borderColor: colors.gray_cold,
@@ -132,20 +133,22 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     marginVertical: 4,
   },
-  rightIcon: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   captionTextContainer: {
     alignSelf: 'flex-start',
     alignItems: 'flex-start',
   },
   captionTextContainer2: {
-    alignSelf: 'flex-end',
-    alignItems: 'flex-end',
+    //alignSelf: 'flex-end',
+    //alignItems: 'flex-end',
   },
-  childrenStyle: {
-    marginVertical: 4,
+  icon: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 44,
+    width: 44,
+    backgroundColor: colors.gray_rodrigo,
+    marginRight: 8,
+    borderRadius: 8,
+    marginHorizontal: 16,
   },
 });
