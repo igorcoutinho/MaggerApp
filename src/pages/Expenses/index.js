@@ -106,7 +106,7 @@ function Home() {
     );
   }
   function renderDiaDoMes(item) {
-    console.log('entrou no render mes: ', item);
+    console.log('entrou no render mes:', item);
     return (
       <View style={{flex: 1}}>
         <Text>
@@ -115,8 +115,6 @@ function Home() {
         <FlatList
           data={item.despesas}
           renderItem={({despesa}) => renderDespesas(despesa)}
-          keyExtractor={item.data}
-          //ListEmptyComponent={ () => emptyList()}
         />
       </View>
     );
