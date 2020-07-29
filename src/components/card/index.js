@@ -66,7 +66,6 @@ export default class Card extends Component {
               paddingHorizontal: 16,
               paddingVertical: 8,
               alignItems: 'flex-start',
-              backgroundColor: 'red',
             }}>
             {rightIcon ? (
               <TouchableOpacity
