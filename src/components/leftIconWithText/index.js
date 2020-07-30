@@ -3,7 +3,6 @@ import {View, Text} from 'react-native';
 import Icon from '../atomic/icon';
 
 const leftIconWithText = (props) => {
-  console.log('props:', props);
   return (
     <View
       style={{
@@ -15,14 +14,16 @@ const leftIconWithText = (props) => {
         width={32}
         height={32}
       />
-      <Text
-        style={{
-          color: props.colorText,
-          fontWeight: props.weigth,
-          fontSize: props.size,
-        }}>
-        {props.secondaryText}
-      </Text>
+      <View style={{marginLeft: 8}}>
+        <Text
+          style={{
+            color: props.colorText,
+            fontWeight: props.weigth,
+            fontSize: props.size,
+          }}>
+          {props.secondaryText}
+        </Text>
+      </View>
     </View>
   );
 };

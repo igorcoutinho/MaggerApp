@@ -28,6 +28,8 @@ function Home() {
               value: 26.0,
               status: 'approved',
               date: '20/09/2020',
+              time: '14h00',
+              location: 'Contele Filial de Santos - SP',
             },
             {
               description: 'Almoço restaurante',
@@ -35,6 +37,8 @@ function Home() {
               value: 326.0,
               status: 'approved',
               date: '20/09/2020',
+              time: '14h00',
+              location: 'Contele Filial de Santos - SP',
             },
           ],
         },
@@ -48,6 +52,8 @@ function Home() {
               value: 26.0,
               status: 'approved',
               date: '14/09/2020',
+              time: '14h00',
+              location: 'Contele Filial de Santos - SP',
             },
           ],
         },
@@ -61,6 +67,8 @@ function Home() {
               value: 26.0,
               status: 'approved',
               date: '22/09/2020',
+              time: '14h00',
+              location: 'Contele Filial de Santos - SP',
             },
             {
               description: 'Almoço restaurante',
@@ -68,6 +76,8 @@ function Home() {
               value: 326.0,
               status: 'canceled',
               date: '22/09/2020',
+              time: '14h00',
+              location: 'Contele Filial de Santos - SP',
             },
           ],
         },
@@ -84,7 +94,6 @@ function Home() {
       const list = expenses.days.sort((a, b) => a.day - b.day);
       setExpenses({...expenses, days: list});
       setIsListSorted(true);
-      console.log('listasorted:', expenses);
     }
   }
   function sumTotal() {
@@ -120,7 +129,6 @@ function Home() {
   }
 
   function renderList() {
-    console.log('renderlist', expenses);
     return (
       <View>
         <View

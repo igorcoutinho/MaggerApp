@@ -39,7 +39,7 @@ function LazyImage({
       size={useDimensionsDevice ? width : size}>
       {loaded && (
         <OriginalAnimated
-          style={{opacity, borderRadius: imageRadius || 0}}
+          style={{opacity, borderRadius: imageRadius}}
           source={source}
           ratio={aspectRatio}
           resizeMode="contain"

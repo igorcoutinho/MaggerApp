@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, DynamicColorIOS} from 'react-native';
 import Card from '../../components/card';
 import {colors} from '../../styles';
 
@@ -13,6 +13,7 @@ const Home = () => (
     }}>
     <Card
       primaryText={'Despesas'}
+      primaryTextColor={colors.grayConteleDark}
       onContainerClicked={() => Actions.expenses()}></Card>
   </View>
 );

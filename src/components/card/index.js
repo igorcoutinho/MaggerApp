@@ -1,12 +1,13 @@
 import React, {Fragment} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {colors, DescDestaque2, Desc2} from '../../styles';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {colors, DescDestaque2, Desc2, Title} from '../../styles';
 import Icon from '../atomic/icon';
 
 const Card = (props) => {
   const renderCard = () => {
     const {
       primaryText,
+      primaryTextColor,
       secondaryText,
       rightIcon,
       lines,
@@ -32,15 +33,14 @@ const Card = (props) => {
               minHeight: 40,
             }}>
             {primaryText && (
-              <Text
-                style={{
-                  textTransform: useCaptalize ? 'capitalize' : null,
-                  fontSize: 16,
-                  fontWeight: 'normal',
-                  color: colors.grayConteleDark,
-                }}>
+              <Title
+                fontSize={'16'}
+                fontWeight={'normal'}
+                textColor={
+                  primaryTextColor ? primaryTextColor : colors.grayConteleDark
+                }>
                 {primaryText}
-              </Text>
+              </Title>
             )}
             {secondaryText ? (
               <View

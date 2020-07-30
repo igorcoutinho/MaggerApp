@@ -7,10 +7,9 @@ const dateWithIcon = (props) => {
   return (
     <View
       style={{
-        marginHorizontal: 16,
         alignSelf: 'flex-start',
         flexDirection: 'row',
-        marginVertical: 25,
+        marginVertical: 20,
       }}>
       <View style={{marginTop: 4, marginRight: 16}}>
         <Icon name="Calendar" corPrimaria={colors.grayContele} />

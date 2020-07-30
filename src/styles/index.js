@@ -39,7 +39,7 @@ export const colors = {
   grayConteleLight: '#9DADB8',
   greenContele: '#09D261',
   blueConteleLight: '#DCE4F0',
-  grayConteleDark: '#222222',
+  grayConteleDark: '#0F3A57',
 };
 
 export const dimensions = {
@@ -71,11 +71,10 @@ export const TagDestaque = styled.Text`
   margin-vertical: ${(props) => props.marginVertical || 0};
 `;
 
-export const Titulo = styled.Text`
+export const Title = styled.Text`
   color: ${(props) => props.textColor || colors.gray_regent};
-  font-size: ${fonts.lg};
-  margin-horizontal: ${(props) => props.marginHorizontal || 0};
-  margin-vertical: ${(props) => props.marginVertical || 0};
+  font-size: ${(props) => props.fontSize || 16};
+  font-weight: ${(props) => props.fontWeigth || 'normal'};
 `;
 
 export const TagNormal = styled.Text`
