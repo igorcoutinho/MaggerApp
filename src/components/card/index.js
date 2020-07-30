@@ -10,12 +10,8 @@ import {
 } from '../../styles';
 import Icon from '../atomic/icon';
 
-export default class Card extends Component {
-  static defaultProps = {
-    lines: 1,
-  };
-
-  renderCard = () => {
+const Card = (props) => {
+  const renderCard = () => {
     const {
       primaryText,
       secondaryText,
@@ -24,7 +20,7 @@ export default class Card extends Component {
       onPress,
       onRightIconClicked,
       onContainerClicked,
-      secondaryTextMoreLine,
+      secondaryTextIcon,
       leftIconCorPrimaria,
       leftIconCorSecundaria,
       rightIconCorPrimaria,
@@ -32,8 +28,7 @@ export default class Card extends Component {
       dadosText,
       dadosTextColor,
       useCaptalize,
-    } = this.props;
-    console.log(primaryText);
+    } = props;
     return (
       <Fragment>
         <View style={styles.cardContainer}>
@@ -51,34 +46,43 @@ export default class Card extends Component {
               </Text>
             )}
             {secondaryText ? (
-              <DescDestaque2
-                style={{marginVertical: 1}}
-                textColor={colors.blue_casal}
-                numberOfLines={2}>
-                {secondaryText}
-              </DescDestaque2>
+              <View
+                onPress={onRightIconClicked}
+                style={{
+                  flexDirection: 'row',
+                }}>
+                <Icon
+                  name={secondaryTextIcon}
+                  corPrimaria={colors.grayConteleLight}
+                  width={32}
+                  height={32}
+                />
+                <DescDestaque2 textColor={colors.blue_casal}>
+                  {secondaryText}
+                </DescDestaque2>
+              </View>
             ) : null}
           </View>
 
           <View
             style={{
               flexDirection: 'row',
-              paddingHorizontal: 16,
-              paddingVertical: 8,
-              alignItems: 'flex-start',
+              paddingVertical: 6,
+              alignItems: 'flex-end',
+              justifyContent: 'flex-end',
             }}>
             {rightIcon ? (
-              <TouchableOpacity
+              <View
                 onPress={onRightIconClicked}
-                style={{marginHorizontal: 10}}>
+                style={{alignItems: 'flex-end', marginTop: 4}}>
                 <Icon
                   name={rightIcon}
                   corPrimaria={rightIconCorPrimaria}
                   corSecundaria={rightIconCorSecundaria}
-                  width={20}
-                  height={20}
+                  width={30}
+                  height={30}
                 />
-              </TouchableOpacity>
+              </View>
             ) : null}
 
             <Desc2
@@ -93,34 +97,28 @@ export default class Card extends Component {
     );
   };
 
-  render() {
-    const {onContainerClicked} = this.props;
-    console.log(onContainerClicked);
+  const {onContainerClicked} = props;
 
-    if (onContainerClicked) {
-      return (
-        <TouchableOpacity
-          style={[styles.cardStyle]}
-          onPress={onContainerClicked}>
-          {this.renderCard()}
-        </TouchableOpacity>
-      );
-    } else {
-      return <View style={[styles.cardStyle]}>{this.renderCard()}</View>;
-    }
+  if (onContainerClicked) {
+    return (
+      <TouchableOpacity style={[styles.cardStyle]} onPress={onContainerClicked}>
+        {renderCard()}
+      </TouchableOpacity>
+    );
+  } else {
+    return <View style={[styles.cardStyle]}>{renderCard()}</View>;
   }
-}
+};
 
 const styles = StyleSheet.create({
   cardStyle: {
     shadowColor: colors.gray_regent,
     shadowOffset: {
-      width: 3,
-      height: 3,
+      width: 1,
+      // height: 3,
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
-    elevation: 1,
     backgroundColor: colors.white_solid,
     opacity: 1,
     borderColor: colors.gray_cold,
@@ -128,26 +126,12 @@ const styles = StyleSheet.create({
   cardContainer: {
     flexDirection: 'row',
     paddingHorizontal: 16,
-    paddingVertical: 8,
     alignItems: 'flex-start',
-    marginVertical: 4,
-  },
-  captionTextContainer: {
-    alignSelf: 'flex-start',
-    alignItems: 'flex-start',
-  },
-  captionTextContainer2: {
-    //alignSelf: 'flex-end',
-    //alignItems: 'flex-end',
-  },
-  icon: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 44,
-    width: 44,
-    backgroundColor: colors.gray_rodrigo,
-    marginRight: 8,
-    borderRadius: 8,
-    marginHorizontal: 16,
+    marginVertical: 8,
   },
 });
+
+Card.defaultProps = {
+  lines: 1,
+};
+export default Card;

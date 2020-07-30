@@ -3,10 +3,7 @@ import {Dimensions, StyleSheet} from 'react-native';
 
 export const colors = {
   blue_daintree: '#00232F',
-  blue_casal: '#295761',
-  blue_leaf: '#9EDFE6',
-  blue_eastern: '#149BAA',
-  blue_eastern_opacity: 'rgba(20, 154, 169, 0.2)',
+  blue_dark: '#0F3A57',
   yellow_selective: '#FFB300',
   orange_west_side: '#FF960B',
   orange_west_side_opacity: 'rgba(255, 150, 11, 0.2)',
@@ -38,6 +35,10 @@ export const colors = {
   gray5: '#EBEBEB',
   gray6: '#F7F7F7',
   gray7: '#FCFCFC',
+  grayContele: '#566475',
+  grayConteleLight: '#9DADB8',
+  greenContele: '#09D261',
+  blueConteleLight: '#DCE4F0',
 };
 
 export const dimensions = {
@@ -59,6 +60,8 @@ export const fonts = {
   lg: 16, // large - parecido com um subtitulo, utilizado quando quiser chamar atenção para algo.
   xl: 20, // extra large - Maior tamanho de fonte, pouco utilizado
 };
+
+export const fontFamily = 'OpenSans';
 
 export const TagDestaque = styled.Text`
   color: ${(props) => props.textColor || colors.gray_regent};
