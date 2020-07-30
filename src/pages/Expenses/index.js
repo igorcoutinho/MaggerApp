@@ -8,7 +8,6 @@ import {typeExpense} from '../../utils/typeExpense';
 import {Actions} from 'react-native-router-flux';
 import Icon from '../../components/atomic/icon';
 import TitleExpense from '../../components/tittleExpense';
-import {exp} from 'react-native-reanimated';
 
 function Home() {
   const [expenses, setExpenses] = useState();

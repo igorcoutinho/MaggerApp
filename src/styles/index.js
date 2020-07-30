@@ -39,6 +39,7 @@ export const colors = {
   grayConteleLight: '#9DADB8',
   greenContele: '#09D261',
   blueConteleLight: '#DCE4F0',
+  grayConteleDark: '#222222',
 };
 
 export const dimensions = {

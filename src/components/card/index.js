@@ -1,13 +1,6 @@
-import React, {Component, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {
-  colors,
-  DescDestaque2,
-  Desc2,
-  TagNormal,
-  Separador,
-  fonts,
-} from '../../styles';
+import {colors, DescDestaque2, Desc2} from '../../styles';
 import Icon from '../atomic/icon';
 
 const Card = (props) => {
@@ -40,8 +33,12 @@ const Card = (props) => {
             }}>
             {primaryText && (
               <Text
-                textColor={colors.blue_daintree}
-                style={{textTransform: useCaptalize ? 'capitalize' : null}}>
+                style={{
+                  textTransform: useCaptalize ? 'capitalize' : null,
+                  fontSize: 16,
+                  fontWeight: 'normal',
+                  color: colors.grayConteleDark,
+                }}>
                 {primaryText}
               </Text>
             )}
@@ -57,7 +54,7 @@ const Card = (props) => {
                   width={32}
                   height={32}
                 />
-                <DescDestaque2 textColor={colors.blue_casal}>
+                <DescDestaque2 textColor={colors.grayConteleLight}>
                   {secondaryText}
                 </DescDestaque2>
               </View>
