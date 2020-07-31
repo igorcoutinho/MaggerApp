@@ -56,8 +56,6 @@ export const fonts = {
   xl: 20, // extra large - Maior tamanho de fonte, pouco utilizado
 };
 
-export const fontFamily = 'OpenSans';
-
 export const TagDestaque = styled.Text`
   color: ${(props) => props.textColor || colors.gray_regent};
   font-size: ${fonts.xl};
