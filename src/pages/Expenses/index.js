@@ -166,7 +166,7 @@ function Home() {
             justifyContent: 'space-between',
             alignItems: 'center',
             marginBottom: 24,
-            height: '8%',
+            height: '10%',
           }}>
           <Text
             style={{
@@ -187,7 +187,7 @@ function Home() {
         </View>
 
         <FlatList
-          style={{height: '59%'}}
+          style={{height: '70%'}}
           data={expenses.days}
           renderItem={({item}) => renderDiaDoMes(item)}
           ItemSeparatorComponent={() => (
@@ -197,9 +197,7 @@ function Home() {
 
         <View
           style={{
-            //display: 'flex',
-            //flexGrow: 1,
-            height: '30%',
+            height: '20%',
             backgroundColor: colors.blueConteleLight,
           }}>
           <Total total={total.toFixed(2)} />
