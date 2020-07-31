@@ -2,12 +2,14 @@ import React, {Fragment} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {colors, DescDestaque2, Desc2, Title} from '../../styles';
 import Icon from '../atomic/icon';
+import styles from './styles';
 
 const Card = (props) => {
   const renderCard = () => {
     const {
       primaryText,
       primaryTextColor,
+      disabledText,
       secondaryText,
       rightIcon,
       lines,
@@ -26,16 +28,12 @@ const Card = (props) => {
     return (
       <Fragment>
         <View style={styles.cardContainer}>
-          <View
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              minHeight: 40,
-            }}>
+          <View style={styles.primaryText}>
             {primaryText && (
               <Title
                 fontSize={'16'}
                 fontWeight={'normal'}
+                disabledText={disabledText}
                 textColor={
                   primaryTextColor ? primaryTextColor : colors.grayConteleDark
                 }>
@@ -61,17 +59,9 @@ const Card = (props) => {
             ) : null}
           </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-              paddingVertical: 6,
-              alignItems: 'flex-end',
-              justifyContent: 'flex-end',
-            }}>
+          <View style={styles.rightIcon}>
             {rightIcon ? (
-              <View
-                onPress={onRightIconClicked}
-                style={{alignItems: 'flex-end', marginTop: 4}}>
+              <View onPress={onRightIconClicked} style={styles.rightIcon2}>
                 <Icon
                   name={rightIcon}
                   corPrimaria={rightIconCorPrimaria}
@@ -106,27 +96,6 @@ const Card = (props) => {
     return <View style={[styles.cardStyle]}>{renderCard()}</View>;
   }
 };
-
-const styles = StyleSheet.create({
-  cardStyle: {
-    shadowColor: colors.gray_regent,
-    shadowOffset: {
-      width: 1,
-      // height: 3,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    backgroundColor: colors.white_solid,
-    opacity: 1,
-    borderColor: colors.gray_cold,
-  },
-  cardContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: 16,
-    alignItems: 'flex-start',
-    marginVertical: 8,
-  },
-});
 
 Card.defaultProps = {
   lines: 1,

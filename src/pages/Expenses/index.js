@@ -8,6 +8,8 @@ import {typeExpense} from '../../utils/typeExpense';
 import {Actions} from 'react-native-router-flux';
 import Icon from '../../components/atomic/icon';
 import TitleExpense from '../../components/tittleExpense';
+import Total from '../../components/total';
+import styles from './styles';
 
 function Home() {
   const [expenses, setExpenses] = useState();
@@ -30,15 +32,21 @@ function Home() {
               date: '20/09/2020',
               time: '14h00',
               location: 'Contele Filial de Santos - SP',
+              latitude: -23.966205,
+              longitude: -46.336654,
+              refundable: true,
             },
             {
               description: 'Almoço restaurante',
               type: 1,
-              value: 326.0,
+              value: 26.0,
               status: 'approved',
               date: '20/09/2020',
               time: '14h00',
               location: 'Contele Filial de Santos - SP',
+              latitude: -23.966205,
+              longitude: -46.336654,
+              refundable: false,
             },
           ],
         },
@@ -50,10 +58,13 @@ function Home() {
               description: 'Almoço restaurante',
               type: 1,
               value: 26.0,
-              status: 'approved',
+              status: 'canceled',
               date: '14/09/2020',
               time: '14h00',
               location: 'Contele Filial de Santos - SP',
+              latitude: -23.966205,
+              longitude: -46.336654,
+              refundable: true,
             },
           ],
         },
@@ -69,15 +80,21 @@ function Home() {
               date: '22/09/2020',
               time: '14h00',
               location: 'Contele Filial de Santos - SP',
+              latitude: -23.966205,
+              longitude: -46.336654,
+              refundable: true,
             },
             {
               description: 'Almoço restaurante',
               type: 1,
               value: 326.0,
-              status: 'canceled',
+              status: 'approved',
               date: '22/09/2020',
               time: '14h00',
               location: 'Contele Filial de Santos - SP',
+              latitude: -23.966205,
+              longitude: -46.336654,
+              refundable: true,
             },
           ],
         },
@@ -85,10 +102,12 @@ function Home() {
     });
     setIsLoading(false);
   }, []);
+
   useEffect(() => {
     sumTotal();
     sortList();
   }, [isLoading]);
+
   function sortList() {
     if (!isLoading) {
       const list = expenses.days.sort((a, b) => a.day - b.day);
@@ -109,18 +128,26 @@ function Home() {
   }
   function renderDiaDoMes(item) {
     return (
-      <View style={{marginVertical: 4}}>
+      <View style={styles.vertical4}>
         <TitleExpense day={item.day} dayOfWeek={dayOfWeek[item.dayOfWeek]} />
         {item.expenses.map((exp) => (
           <View style={{marginVertical: 4}}>
             <Card
               primaryText={exp.description}
+              primaryTextColor={
+                exp.refundable ? colors.grayContele : colors.grayConteleLight
+              }
+              disabledText={!exp.refundable}
               secondaryText={typeExpense[exp.type]}
               dadosText={exp.value.toFixed(2)}
-              rightIcon={'Refund'}
-              rightIconCorPrimaria={colors.greenContele}
+              {...(exp.status === 'approved' && {rightIcon: 'Refund'})}
+              rightIconCorPrimaria={
+                exp.refundable ? colors.greenContele : colors.grayConteleLight
+              }
               secondaryTextIcon={'Cutlery'}
-              onContainerClicked={() => Actions.refund({props: exp})}
+              onContainerClicked={() => {
+                if (exp.refundable) Actions.refund({props: exp});
+              }}
             />
           </View>
         ))}
@@ -130,7 +157,7 @@ function Home() {
 
   function renderList() {
     return (
-      <View>
+      <View style={styles.viewList}>
         <View
           style={{
             marginHorizontal: 16,
@@ -139,6 +166,7 @@ function Home() {
             justifyContent: 'space-between',
             alignItems: 'center',
             marginBottom: 24,
+            height: '8%',
           }}>
           <Text
             style={{
@@ -159,6 +187,7 @@ function Home() {
         </View>
 
         <FlatList
+          style={{height: '59%'}}
           data={expenses.days}
           renderItem={({item}) => renderDiaDoMes(item)}
           ItemSeparatorComponent={() => (
@@ -168,45 +197,12 @@ function Home() {
 
         <View
           style={{
-            marginHorizontal: 16,
-            marginTop: 14,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
+            //display: 'flex',
+            //flexGrow: 1,
+            height: '30%',
+            backgroundColor: colors.blueConteleLight,
           }}>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: 'bold',
-              color: colors.grayConteleLight,
-            }}>
-            TOTAL
-          </Text>
-          <View
-            style={{
-              //justifyContent: 'center',
-              flexDirection: 'row',
-              alignSelf: 'flex-end',
-            }}>
-            <Text
-              style={{
-                fontSize: 16,
-                fontWeight: 'bold',
-                color: colors.blue_dark,
-                marginTop: 10,
-                marginRight: 4,
-              }}>
-              R$
-            </Text>
-            <Text
-              style={{
-                fontSize: 26,
-                fontWeight: 'bold',
-                color: colors.blue_dark,
-              }}>
-              {total ? total.toFixed(2) : null}
-            </Text>
-          </View>
+          <Total total={total.toFixed(2)} />
         </View>
       </View>
     );
@@ -216,11 +212,7 @@ function Home() {
     return <ActivityIndicator />;
   }
   if (isListSorted) {
-    return (
-      <View style={{flex: 1, backgroundColor: colors.gray6}}>
-        {renderList()}
-      </View>
-    );
+    return <View style={styles.primaryView}>{renderList()}</View>;
   }
 
   return <ActivityIndicator />;

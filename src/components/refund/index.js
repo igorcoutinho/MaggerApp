@@ -1,7 +1,6 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {colors, Title} from '../../styles';
-import Icon from '../atomic/icon';
 import LazyImage from '../LazyImage';
 import Header from '../header';
 import {Actions} from 'react-native-router-flux';
@@ -9,24 +8,31 @@ import DateWithIcon from '../dateWithIcon';
 import LeftIconWithText from '../leftIconWithText';
 import {typeExpense} from '../../utils/typeExpense';
 import CardLocation from '../cardLocation';
+import openMap from 'react-native-open-maps';
+import styles from './styles';
 
 const Refund = ({props}) => {
   function onClickArrow() {
     Actions.pop();
   }
-  return (
-    <View style={{flex: 1}}>
-      <Header onClickArrow={() => onClickArrow()} value={props.value} />
-      <View style={{marginHorizontal: 24}}>
-        <DateWithIcon date={props.date} />
 
+  function openGps(lat, lng) {
+    console.log(lat, lng);
+    openMap({latitude: lat, longitude: lng});
+  }
+
+  return (
+    <View style={styles.primaryView}>
+      <Header onClickArrow={() => onClickArrow()} value={props.value} />
+      <View style={styles.margin24}>
+        <DateWithIcon date={props.date} />
         <Title
           fontSize={'16'}
           fontWeight={'normal'}
           textColor={colors.grayConteleDark}>
           {props.description}
         </Title>
-        <View style={{marginTop: 4}}>
+        <View style={styles.marginTop4}>
           <LeftIconWithText
             secondaryTextIcon={'Cutlery'}
             secondaryText={typeExpense[props.type]}
@@ -37,9 +43,9 @@ const Refund = ({props}) => {
           />
         </View>
 
-        <View style={{marginTop: 30, marginBottom: 25}}>
+        <View style={styles.leftIconView}>
           <LeftIconWithText
-            secondaryTextIcon={'Calendar'}
+            secondaryTextIcon={'Refund'}
             secondaryText={
               props.status == 'approved' ? 'Reembolsável' : 'Não reembolsável '
             }
@@ -59,11 +65,12 @@ const Refund = ({props}) => {
         </View>
 
         <CardLocation
+          openGps={() => openGps(props.latitude, props.longitude)}
           time={props.time}
           location={props.location}
           date={props.date}
         />
-        <View style={{borderRadius: 8, marginTop: 24}}>
+        <View style={styles.image}>
           <LazyImage imageRadius={8} />
         </View>
       </View>

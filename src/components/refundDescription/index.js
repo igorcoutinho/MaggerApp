@@ -5,12 +5,13 @@ import Icon from '../atomic/icon';
 
 const refundDescription = (props) => {
   return (
+    <>
       <View
         style={{
           flexDirection: 'row',
           marginHorizontal: 16,
         }}>
-          <Text
+        <Text
           style={{
             fontWeight: 'bold',
             fontSize: 24,
@@ -34,9 +35,8 @@ const refundDescription = (props) => {
           marginBottom: 20,
           marginHorizontal: 16,
           flexDirection: 'row',
-        }}>
-        
-      </View>
+        }}></View>
+    </>
   );
 };
 

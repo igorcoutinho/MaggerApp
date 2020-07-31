@@ -1,20 +1,17 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import Icon from '../atomic/icon';
-
+import styles from './styles';
 const leftIconWithText = (props) => {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-      }}>
+    <View style={styles.primaryView}>
       <Icon
         name={props.secondaryTextIcon}
         corPrimaria={props.colorIcon}
         width={32}
         height={32}
       />
-      <View style={{marginLeft: 8}}>
+      <View style={styles.marginLeft8}>
         <Text
           style={{
             color: props.colorText,

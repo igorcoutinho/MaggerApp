@@ -34,6 +34,7 @@ function LazyImage({
     <Small
       source={smallSource || require('../../resources/images/imageDefault.jpg')}
       ratio={aspectRatio}
+      borderRadius={8}
       resizeMode="cover"
       blurRadius={1}
       size={useDimensionsDevice ? width : size}>

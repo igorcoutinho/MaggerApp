@@ -11,7 +11,7 @@ export const colors = {
   red_guardsman_opacity_20: '#C40D0033',
   red_dark_burgundy: '#B80C08',
   white_solid: '#FFF',
-  white_alabaster: '#FCFCFC',
+  white_alabaster: '#FFFFFF',
   gray_rodrigo: '#F8F8F8',
   gray_gallery: '#EFEFEF',
   gray_alto: '#E1DFDF',
@@ -28,13 +28,7 @@ export const colors = {
   blue_deep_sea: '#0D4361',
   green_surf: '#DBE9DA',
   red_peep: '#F6DCDA',
-  gray1: '#1F1F1F',
-  gray2: '#5E5E5E',
-  gray3: '#C4C4C4',
-  gray4: '#DFDFDF',
-  gray5: '#EBEBEB',
-  gray6: '#F7F7F7',
-  gray7: '#FCFCFC',
+  backgroundColor: '#F6F8FB',
   grayContele: '#566475',
   grayConteleLight: '#9DADB8',
   greenContele: '#09D261',
@@ -75,6 +69,11 @@ export const Title = styled.Text`
   color: ${(props) => props.textColor || colors.gray_regent};
   font-size: ${(props) => props.fontSize || 16};
   font-weight: ${(props) => props.fontWeigth || 'normal'};
+  ${(props) =>
+    props.disabledText &&
+    `  text-decoration-line: line-through;
+  text-decoration-style: solid;
+  text-decoration-color: #9b9b9b;`}
 `;
 
 export const TagNormal = styled.Text`
